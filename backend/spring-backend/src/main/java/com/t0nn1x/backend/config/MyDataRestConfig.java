@@ -2,7 +2,6 @@ package com.t0nn1x.backend.config;
 
 import com.t0nn1x.backend.entity.Product;
 import com.t0nn1x.backend.entity.ProductCategory;
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import java.util.Set;
 @Configuration
 public class MyDataRestConfig implements RepositoryRestConfigurer {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
     @Autowired
     public  MyDataRestConfig(EntityManager theEntityManager){
         entityManager = theEntityManager;
@@ -40,7 +39,6 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
                 .forDomainType(ProductCategory.class)
                 .withItemExposure(((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions)))
                 .withCollectionExposure(((metdata, httpMethods) -> httpMethods.disable()));
-
         // call an internal helper method to expose ids
         exposeIds(config);
     }
