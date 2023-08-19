@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {count, Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {Product} from "../common/product";
 
@@ -14,9 +14,9 @@ export class ProductService {
 
   // This method returns an Observable of type Product[]
   getProductList(theCategoryId: number): Observable<Product[]>{
+    const searchUrl = `${this.baseUrl}/search/findByProductCategory_Id?id=${theCategoryId}`;
 
-
-    return this.httpClient.get<GetResponse>(this.baseUrl).pipe(
+    return this.httpClient.get<GetResponse>(searchUrl).pipe(
       map(response => response._embedded.products)
     );
   }
