@@ -75,4 +75,6 @@ export class ProductListComponent implements OnInit {
             }
         );
     }
+
+    protected readonly length = length;
 }
