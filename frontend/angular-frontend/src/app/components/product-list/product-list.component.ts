@@ -66,14 +66,14 @@ export class ProductListComponent implements OnInit {
     }
 
     private handleSearchProducts() {
-        const theKeyword: string | null = this.route.snapshot.paramMap.get('keyword');
+      const theKeyword: string | null = this.route.snapshot.paramMap.get('keyword');
 
-        // now search for products using given keyword
-        this.productService.searchProducts(theKeyword).subscribe(
-            data => {
-                this.products = data;
-            }
-        );
+      // now search for products using given keyword
+      this.productService.searchProducts(theKeyword).subscribe(
+        data => {
+          this.products = data;
+        }
+      );
     }
 
     protected readonly length = length;
